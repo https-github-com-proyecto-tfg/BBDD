@@ -46,4 +46,11 @@ public class UserDataController {
     public List<String> getUserImages(@RequestParam String email) {
         return userDataService.getUserImages(email);
     }
+
+    @PostMapping("/payForImages")
+    public String payForImages(@RequestBody Map<String, String> userData) {
+        String email = userData.get("email");
+        userDataService.payForImages(email);
+        return "Images paid successfully";
+    }
 }

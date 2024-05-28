@@ -15,6 +15,7 @@ public class UserData {
     private String email;
     private String date; // Cambiado a String
     private String option;
+    private String estado;
 
     // Getters y Setters
     
@@ -51,5 +52,12 @@ public class UserData {
     }
     public void setOption(String option) {
         this.option = option;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
