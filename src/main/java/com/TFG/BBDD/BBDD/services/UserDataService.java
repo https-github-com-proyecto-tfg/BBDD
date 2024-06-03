@@ -62,4 +62,9 @@ public class UserDataService {
         String sql = "UPDATE user SET estado = 'pagado' WHERE email = ? AND estado = 'pendiente'";
         jdbcTemplate.update(sql, email);
     }
+
+    public List<String> getUserPaidImages(String email) {
+        String sql = "SELECT image_url FROM user WHERE email = ? AND estado = 'pagado'";
+        return jdbcTemplate.queryForList(sql, new Object[]{email}, String.class);
+    }
 }

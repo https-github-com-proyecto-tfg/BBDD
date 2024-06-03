@@ -79,4 +79,9 @@ public class UserDataController {
         userDataService.payForImages(email);
         return "Images paid successfully";
     }
+
+    @GetMapping("/getUserPaidImages")
+    public List<String> getUserPaidImages(@RequestParam String email) {
+        return userDataService.getUserPaidImages(email);
+    }
 }
