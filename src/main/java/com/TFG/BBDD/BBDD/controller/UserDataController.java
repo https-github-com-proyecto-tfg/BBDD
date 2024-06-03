@@ -15,17 +15,31 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Controlador para gestionar los datos de usuario.
+ */
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserDataController {
 
     private final UserDataService userDataService;
 
+    /**
+     * Constructor para inyectar el servicio UserDataService.
+     * 
+     * @param userDataService el servicio UserDataService
+     */
     @Autowired
     public UserDataController(UserDataService userDataService) {
         this.userDataService = userDataService;
     }
 
+    /**
+     * Endpoint para guardar los datos de usuario y la imagen seleccionada.
+     * 
+     * @param userData los datos del usuario y la imagen
+     * @return mensaje de éxito
+     */
     @PostMapping("/saveUserData")
     public String saveUserData(@RequestBody Map<String, String> userData) {
         String name = userData.get("name");
@@ -42,11 +56,23 @@ public class UserDataController {
         return "Data saved successfully";
     }
 
+    /**
+     * Endpoint para obtener las imágenes guardadas del usuario.
+     * 
+     * @param email el correo electrónico del usuario
+     * @return una lista de URLs de imágenes
+     */
     @GetMapping("/getUserImages")
     public List<String> getUserImages(@RequestParam String email) {
         return userDataService.getUserImages(email);
     }
 
+    /**
+     * Endpoint para procesar el pago de las imágenes seleccionadas.
+     * 
+     * @param userData los datos del usuario
+     * @return mensaje de éxito
+     */
     @PostMapping("/payForImages")
     public String payForImages(@RequestBody Map<String, String> userData) {
         String email = userData.get("email");

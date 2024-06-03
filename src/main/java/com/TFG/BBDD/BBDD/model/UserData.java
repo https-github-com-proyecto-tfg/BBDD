@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Entidad que representa los datos de usuario en la base de datos.
+ */
 @Entity
 public class UserData {
 
@@ -40,6 +43,11 @@ public class UserData {
         this.email = email;
     }
 
+    /**
+     * Obtiene la fecha en formato String.
+     * 
+     * @return la fecha
+     */
     public String getDate() {
         return date;
     }
