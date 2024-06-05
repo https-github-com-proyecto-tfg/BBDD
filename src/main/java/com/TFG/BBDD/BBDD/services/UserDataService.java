@@ -67,4 +67,26 @@ public class UserDataService {
         String sql = "SELECT image_url FROM user WHERE email = ? AND estado = 'pagado'";
         return jdbcTemplate.queryForList(sql, new Object[]{email}, String.class);
     }
+
+    /**
+     * Obtiene el conteo de imágenes pagadas por un usuario específico.
+     * 
+     * @param email el correo electrónico del usuario
+     * @return el número de imágenes pagadas
+     */
+    public int getPaidImagesCount(String email) {
+        String sql = "SELECT COUNT(*) FROM user WHERE email = ? AND estado = 'pagado'";
+        return jdbcTemplate.queryForObject(sql, new Object[]{email}, Integer.class);
+    }
+
+    /**
+     * Obtiene el conteo de imágenes pendientes de pago por un usuario específico.
+     * 
+     * @param email el correo electrónico del usuario
+     * @return el número de imágenes pendientes de pago
+     */
+    public int getPendingImagesCount(String email) {
+        String sql = "SELECT COUNT(*) FROM user WHERE email = ? AND estado = 'pendiente'";
+        return jdbcTemplate.queryForObject(sql, new Object[]{email}, Integer.class);
+    }
 }

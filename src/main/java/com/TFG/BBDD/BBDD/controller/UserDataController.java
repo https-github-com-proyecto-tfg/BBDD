@@ -12,6 +12,7 @@ import com.TFG.BBDD.BBDD.services.UserDataService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -83,5 +84,23 @@ public class UserDataController {
     @GetMapping("/getUserPaidImages")
     public List<String> getUserPaidImages(@RequestParam String email) {
         return userDataService.getUserPaidImages(email);
+    }
+
+    /**
+     * Endpoint para obtener estadísticas del usuario.
+     * 
+     * @param email el correo electrónico del usuario
+     * @return un mapa con el conteo de imágenes pagadas y pendientes
+     */
+    @GetMapping("/getUserStatistics")
+    public Map<String, Integer> getUserStatistics(@RequestParam String email) {
+        int paidImagesCount = userDataService.getPaidImagesCount(email);
+        int pendingImagesCount = userDataService.getPendingImagesCount(email);
+
+        Map<String, Integer> statistics = new HashMap<>();
+        statistics.put("paidImages", paidImagesCount);
+        statistics.put("pendingImages", pendingImagesCount);
+
+        return statistics;
     }
 }
